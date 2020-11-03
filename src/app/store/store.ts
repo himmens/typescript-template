@@ -4,7 +4,7 @@ import reducers from 'app/reducers';
 import type { Store } from 'redux';
 import type { StoreState } from 'app/types';
 
-const configureStore = (initialState: StoreState): Store => {
+const configureStore = (initialState: Partial<StoreState>): Store => {
     let composeEnhancers = compose;
     const middleware = [
         fetching
