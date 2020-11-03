@@ -5,7 +5,6 @@
   "scripts": {
     "start:mock": "nodemon src/server/server.js --exec babel-node --presets @babel/env --watch scripts/webpack --watch src/server --watch src/config.js --verbose",
     "build": "scripts/build.sh",
-    "lint:test": "npm run lint && npm run test",
     "lint": "npm run lint:ts && npm run lint:js && npm run lint:css",
     "lint:ts": "tsc --noEmit",
     "lint:js": "eslint ./src scripts --quiet --ext .ts,.tsx,.js",
@@ -91,7 +90,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint:test"
+      "pre-push": "npm run lint"
     }
   },
   "lint-staged": {
