@@ -16,7 +16,7 @@ type GetInitialDataSteps = {
     success: typeof ACTION.GET_INITIAL_DATA_SUCCESS,
     fail: typeof ACTION.GET_INITIAL_DATA_FAIL,
     response: DataResponse,
-    params: {}
+    params: unknown
 };
 
 export type GetInitialDataReducerActions = ReducerRequestActions<GetInitialDataSteps>;

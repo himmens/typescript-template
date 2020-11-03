@@ -3,7 +3,9 @@ import appLocale from './locale.json';
 const DEFAULT_LOCALE = 'en';
 const locale = DEFAULT_LOCALE;
 
-function getMessages(data: { [id: string]: {} }): {} {
+type Messages = { [id: string]: string };
+
+function getMessages(data: { [id: string]: Messages }): Messages {
     return data[DEFAULT_LOCALE];
 }
 

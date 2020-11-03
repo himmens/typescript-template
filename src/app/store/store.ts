@@ -1,8 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import fetching from './middleware/fetching';
 import reducers from 'app/reducers';
+import type { Store } from 'redux';
+import type { StoreState } from 'app/types';
 
-const configureStore = (initialState: {}): any => {
+const configureStore = (initialState: StoreState): Store => {
     let composeEnhancers = compose;
     const middleware = [
         fetching

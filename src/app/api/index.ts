@@ -6,6 +6,10 @@ type Method =
     typeof METHOD.GET |
     typeof METHOD.POST;
 
+type Params = {
+    [id: string]: string
+}
+
 /**
  * Function for sending requests
  *
@@ -14,7 +18,7 @@ type Method =
  * @param {Object} params
  * @returns {T}
  */
-function request<T>(method: Method, path: string, params: Object = {}): Promise<T> {
+function request<T>(method: Method, path: string, params: Params = {}): Promise<T> {
     let url = Config.SERVICE_API_URL + path;
     let body;
 
@@ -55,7 +59,7 @@ function request<T>(method: Method, path: string, params: Object = {}): Promise<
         });
 }
 
-function getQueryString(params: Object): string {
+function getQueryString(params: Params): string {
     return Object.keys(params)
         .map((k: string): string => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
         .join('&');
