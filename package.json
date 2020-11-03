@@ -1,0 +1,136 @@
+{
+  "name": "typescript-template",
+  "version": "1.0.7",
+  "private": true,
+  "scripts": {
+    "start:mock": "nodemon src/server/server.js --exec babel-node --presets @babel/env --watch scripts/webpack --watch src/server --watch src/config.js --verbose",
+    "build": "scripts/build.sh",
+    "lint:test": "npm run lint && npm run test",
+    "lint": "npm run lint:ts && npm run lint:js && npm run lint:css",
+    "lint:ts": "tsc --noEmit",
+    "lint:js": "eslint ./src scripts --quiet --ext .ts,.tsx,.js",
+    "lint:css": "stylelint 'src/**/*.css' -q",
+    "test": "jest --runInBand --no-cache"
+  },
+  "dependencies": {
+    "assets-webpack-plugin": "3.9.7",
+    "autoprefixer": "9.0.1",
+    "babel-loader": "8.0.6",
+    "@babel/cli": "7.11.5",
+    "@babel/core": "7.11.5",
+    "@babel/plugin-proposal-class-properties": "7.10.4",
+    "@babel/plugin-syntax-class-properties": "7.10.4",
+    "@babel/plugin-syntax-dynamic-import": "7.8.3",
+    "@babel/plugin-syntax-export-extensions": "7.0.0-beta.32",
+    "@babel/polyfill": "7.11.5",
+    "@babel/preset-env": "7.11.5",
+    "@babel/preset-react": "7.10.4",
+    "css-loader": "3.4.2",
+    "file-loader": "1.1.11",
+    "html-webpack-plugin": "3.2.0",
+    "mini-css-extract-plugin": "0.4.1",
+    "optimize-css-assets-webpack-plugin": "5.0.0",
+    "postcss-loader": "3.0.0",
+    "postcss-nested": "4.2.1",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-hot-loader": "4.13.0",
+    "react-intl": "3.11.0",
+    "react-redux": "7.1.3",
+    "redux": "4.0.0",
+    "style-loader": "1.1.3",
+    "uglifyjs-webpack-plugin": "1.2.5",
+    "url-loader": "1.0.1",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10",
+    "webpack-merge": "4.2.2",
+    "whatwg-fetch": "2.0.4"
+  },
+  "devDependencies": {
+    "@babel/node": "7.10.5",
+    "@babel/preset-typescript": "7.10.4",
+    "@babel/register": "7.11.5",
+    "@hot-loader/react-dom": "16.11.0",
+    "@types/jest": "26.0.14",
+    "@types/node": "14.11.8",
+    "@types/react": "16.9.51",
+    "@types/react-dom": "16.9.8",
+    "@types/react-redux": "7.1.9",
+    "@types/react-router": "5.1.8",
+    "@types/webpack-env": "1.15.3",
+    "@typescript-eslint/eslint-plugin": "4.0.1",
+    "@typescript-eslint/parser": "4.0.1",
+    "babel-eslint": "8.2.6",
+    "babel-jest": "25.1.0",
+    "body-parser": "1.18.3",
+    "circular-dependency-plugin": "5.0.2",
+    "css-hot-loader": "1.4.4",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.5.0",
+    "enzyme-to-json": "3.3.4",
+    "eslint": "6.8.0",
+    "eslint-plugin-jest": "23.6.0",
+    "eslint-plugin-react": "7.10.0",
+    "express": "4.16.3",
+    "http-proxy-middleware": "0.18.0",
+    "husky": "1.3.1",
+    "jest": "25.1.0",
+    "jest-localstorage-mock": "2.4.0",
+    "jest-svg-transformer": "1.0.0",
+    "lint-staged": "7.2.0",
+    "nodemon": "1.18.3",
+    "raf": "3.4.0",
+    "stylelint": "9.4.0",
+    "stylelint-csstree-validator": "1.3.0",
+    "typescript": "4.0.2",
+    "webpack-dev-middleware": "3.1.3",
+    "webpack-hot-middleware": "2.25.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint:test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:js --",
+      "flow focus-check",
+      "jest --no-cache --findRelatedTests",
+      "git add"
+    ],
+    "*.css": [
+      "npm run lint:css --",
+      "git add"
+    ]
+  },
+  "jest": {
+    "verbose": true,
+    "cacheDirectory": "/tmp/tests",
+    "coverageDirectory": "/tmp/coverage",
+    "testEnvironment": "jsdom",
+    "testURL": "http://localhost:3200",
+    "setupFiles": [
+      "./scripts/jest/setup.js"
+    ],
+    "testMatch": [
+      "**/src/**/*.spec.[jt]s?(x)"
+    ],
+    "transform": {
+      ".+\\.(js|ts|tsx)$": "./scripts/jest/transform.js",
+      ".+/icon/resources/.+\\.svg$": "@fx/jest-screenshot/transform-svg-sprite/loader.js",
+      ".+\\.svg$": "jest-svg-transformer"
+    },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@fx)/)"
+    ],
+    "globals": {
+      "window": true
+    }
+  }
+}

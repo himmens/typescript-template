@@ -1,0 +1,12 @@
+{
+    "en": {
+        "app.title": "Typescript template",
+
+        "error.common.title": "Error",
+        "error.common.message": "Problem with server connection.",
+        "error.common.button.retry": "Retry",
+        "error.common.button.close": "Close"
+    },
+    "ru": {
+    }
+}
