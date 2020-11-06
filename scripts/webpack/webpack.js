@@ -24,7 +24,7 @@ module.exports = {
             'whatwg-fetch'
         ],
         app: [
-            './app'
+            './index'
         ]
     },
     output: {
@@ -124,7 +124,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'app.html',
+            template: 'index.html',
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,
